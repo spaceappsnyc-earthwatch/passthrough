@@ -1,45 +1,35 @@
-import processing.video.*;
 
-Capture cam1;
-Capture cam2;
+VideoCapture left, right;
+boolean liveVideo;
 
 int resolution_x = 1280;
 int resolution_y = 800;
 
-
-void setup() { 
-  size(resolution_x, resolution_y);
-
-  String[] cameras = Capture.list();
+int width = resolution_x / 2;
+int height = resolution_y;
   
-  if (cameras.length == 0) {
-    println("There are no cameras available for capture.");
-    exit();
-  } else {
-    println("Available cameras:");
-    for (int i = 0; i < cameras.length; i++) {
-      println(cameras[i]);
-    }
-    
-    // The camera can be initialized directly using an 
-    // element from the array returned by list():
-    cam1 = new Capture(this, cameras[0]);
-    cam2 = new Capture(this, cameras[0]);
-    cam1.start();
-    cam2.start();    
-  }      
+
+void setup() {
+  liveVideo = true;
+  
+  
+  left = new VideoCapture(this, liveVideo, height, width);
+  right = new VideoCapture(this, liveVideo, height, width);
+  
+  left.start();
+  right.start();
+  
+  size(resolution_x, resolution_y);
 }
 
 void draw() {
-  if (cam1.available() == true && cam2.available()) {
-    cam1.read();
-    cam2.read();
+  if (left.available() || right.available()) {
+    left.read();
+    right.read();
   }
-  image(cam1, 0, 0);
-  image(cam2, 0.5 * resolution_x, 0);
-  // The following does the same, and is faster when just drawing the image
-  // without any additional resizing, transformations, or tint.
-  //set(0, 0, cam);
+  image(left.transform(), 0, 0, width, height);
+  image(right.transform(), width, 0, width, height);
+
 }
 
 
