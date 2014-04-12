@@ -36,7 +36,7 @@ void draw() {
     cam2.read();
   }
   image(cam1, 0, 0);
-  image(cam2, 0.5 * resolution_x / 2, 0);
+  image(cam2, 0.5 * resolution_x, 0);
   // The following does the same, and is faster when just drawing the image
   // without any additional resizing, transformations, or tint.
   //set(0, 0, cam);
