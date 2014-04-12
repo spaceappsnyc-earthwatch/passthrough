@@ -1,12 +1,13 @@
 import processing.video.*;
 
-Capture cam;
+Capture cam1;
+Capture cam2;
+
 int resolution_x = 1280;
 int resolution_y = 800;
 
 
-void setup() {
-   
+void setup() { 
   size(resolution_x, resolution_y);
 
   String[] cameras = Capture.list();
@@ -22,17 +23,20 @@ void setup() {
     
     // The camera can be initialized directly using an 
     // element from the array returned by list():
-    cam = new Capture(this, cameras[0]);
-    cam.start();     
+    cam1 = new Capture(this, cameras[0]);
+    cam2 = new Capture(this, cameras[0]);
+    cam1.start();
+    cam2.start();    
   }      
 }
 
 void draw() {
-  if (cam.available() == true) {
-    cam.read();
+  if (cam1.available() == true && cam2.available()) {
+    cam1.read();
+    cam2.read();
   }
-  image(cam, 0, 0);
-  image(cam, 640, 0);
+  image(cam1, 0, 0);
+  image(cam2, 0.5 * resolution_x / 2, 0);
   // The following does the same, and is faster when just drawing the image
   // without any additional resizing, transformations, or tint.
   //set(0, 0, cam);
