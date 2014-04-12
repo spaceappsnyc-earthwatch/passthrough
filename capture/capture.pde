@@ -27,8 +27,8 @@ void draw() {
     left.read();
     right.read();
   }
-  image(left.transform(), 0, 0, width, height);
-  image(right.transform(), width, 0, width, height);
+  image(left.transform(), 0, 0);
+  image(right.transform(), width, 0);
 
 }
 
