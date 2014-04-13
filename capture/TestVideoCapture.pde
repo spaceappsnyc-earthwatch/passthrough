@@ -1,7 +1,8 @@
 
 class TestVideoCapture extends VideoCapture {
   boolean hasBeenCalled;
-  TestVideoCapture(PApplet scope, boolean liveVideo, int height, int width, boolean left) {
+  TestVideoCapture(int height, int width, int resolution_height, int resolution_width) {
+    super(height, width, resolution_height, resolution_width); 
     hasBeenCalled = false;
   }
   

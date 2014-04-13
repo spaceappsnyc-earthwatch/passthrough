@@ -14,8 +14,8 @@ void setup() {
   liveVideo = true;
   
   if (testMode) {
-    left = new TestVideoCapture(this, liveVideo, height, width, true);    
-    right = new TestVideoCapture(this, liveVideo, height, width, false);
+    left = new TestVideoCapture(height, width, resolution_x, resolution_y);    
+    right = new TestVideoCapture(height, width, resolution_x, resolution_y);
   } else {
     left = new VideoCapture(this, liveVideo, height, width, true);
     right = new VideoCapture(this, liveVideo, height, width, false);
