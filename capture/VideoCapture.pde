@@ -6,6 +6,8 @@ class VideoCapture {
   int resolution_height, resolution_width;
   int offset_height, offset_width;
 
+  VideoCapture() { }
+
   VideoCapture(PApplet scope, boolean liveVideo, int height, int width, boolean left) {
     this.height = height;
     this.width = width;
