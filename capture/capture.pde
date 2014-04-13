@@ -30,9 +30,9 @@ void draw() {
   if (left.available() || right.available()) {
     left.read();
     right.read();
+    image(left.transform(), 0, 0);
+    image(right.transform(), width, 0);
   }
-  image(left.transform(), 0, 0);
-  image(right.transform(), width, 0);
 }
 
 

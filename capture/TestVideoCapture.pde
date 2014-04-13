@@ -15,10 +15,6 @@ class TestVideoCapture extends VideoCapture {
   
   void read() {
     hasBeenCalled = true;
+    currentImage = loadImage("data/Oculus_grid_640x800.jpg");
   }
-  
-  PImage transform() {
-    PImage img = loadImage("data/Oculus_grid_640x800.jpg");
-    return img;
-  }    
 }

@@ -5,7 +5,8 @@ class VideoCapture {
   int height, width;
   int resolution_height, resolution_width;
   int offset_height, offset_width;
-
+  PImage currentImage;
+  
   VideoCapture() { }
 
   VideoCapture(PApplet scope, boolean liveVideo, int height, int width, boolean left) {
@@ -55,11 +56,11 @@ class VideoCapture {
   
   void read() {
     cam.read();
+    currentImage = cam.get(offset_width, offset_height, width, height);
   }
   
   PImage transform() {
-    PImage img = cam.get(offset_width, offset_height, width, height);
-    
-    return img;
+    println("calling transform");
+    return currentImage;
   }
 }
