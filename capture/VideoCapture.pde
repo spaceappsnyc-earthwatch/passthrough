@@ -6,7 +6,7 @@ class VideoCapture {
   int resolution_height, resolution_width;
   int offset_height, offset_width;
 
-  VideoCapture(PApplet scope, boolean liveVideo, int height, int width) {
+  VideoCapture(PApplet scope, boolean liveVideo, int height, int width, boolean left) {
     this.height = height;
     this.width = width;
     if (liveVideo == false)
@@ -29,9 +29,14 @@ class VideoCapture {
       resolution_height = int(split(resolution, "x")[1]);
       
       //println("resolution", resolution, "width", width, "height", height);
-      
-      offset_width = (resolution_width - width) / 2;
+      if (left) {
+      offset_width = -40 + (resolution_width - width) / 2;
       offset_height = (resolution_height - height) / 2;
+      } else {
+      offset_width = 40 + (resolution_width - width) / 2;
+      offset_height = (resolution_height - height) / 2;
+
+      }
       
       //println("offset_width", offset_width, "offset_height", offset_height);
   
@@ -52,6 +57,7 @@ class VideoCapture {
   
   PImage transform() {
     PImage img = cam.get(offset_width, offset_height, width, height);
+    
     return img;
   }
 }

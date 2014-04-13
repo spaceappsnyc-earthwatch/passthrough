@@ -13,8 +13,8 @@ void setup() {
   liveVideo = true;
   
   
-  left = new VideoCapture(this, liveVideo, height, width);
-  right = new VideoCapture(this, liveVideo, height, width);
+  left = new VideoCapture(this, liveVideo, height, width, true);
+  right = new VideoCapture(this, liveVideo, height, width, false);
   
   left.start();
   right.start();
