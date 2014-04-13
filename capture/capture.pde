@@ -1,6 +1,5 @@
 
 VideoCapture left, right;
-boolean liveVideo;
 
 int resolution_x = 1280;
 int resolution_y = 800;
@@ -11,14 +10,14 @@ int height = resolution_y;
 boolean testMode = true;
 
 void setup() {
-  liveVideo = true;
   
   if (testMode) {
     left = new TestVideoCapture(height, width, resolution_x, resolution_y);    
     right = new TestVideoCapture(height, width, resolution_x, resolution_y);
   } else {
-    left = new VideoCapture(this, liveVideo, height, width, true);
-    right = new VideoCapture(this, liveVideo, height, width, false);
+    String camera_config = Capture.list()[0];
+    left = new VideoCapture(this, height, width, true, camera_config);
+    right = new VideoCapture(this, height, width, false, camera_config);
   }  
   left.start();
   right.start();
